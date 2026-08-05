@@ -6,19 +6,17 @@ import type { Scene } from 'phaser'
  */
 export const GameEvents = {
   CurrentSceneReady: 'current-scene-ready',
-  UpdateMainText: 'update-main-text',
+  EnterRestaurant: 'enter-restaurant',
+  StartTraining: 'start-training',
 } as const
 
 export interface CurrentSceneReadyPayload {
   scene: Scene
 }
 
-export interface UpdateMainTextPayload {
-  text: string
-}
-
 /** Mapa evento -> payload, usado por EventBus para tipar emit/on/off sin `any`. */
 export interface GameEventPayloads {
   [GameEvents.CurrentSceneReady]: CurrentSceneReadyPayload
-  [GameEvents.UpdateMainText]: UpdateMainTextPayload
+  [GameEvents.EnterRestaurant]: undefined
+  [GameEvents.StartTraining]: undefined
 }
