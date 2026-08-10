@@ -4,35 +4,6 @@
   height: 100%;
 }
 
-.app__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.75rem 1.25rem;
-  background-color: #1d1f2b;
-  border-bottom: 1px solid #2c2f42;
-}
-
-.app__header h1 {
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.app__header button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  background-color: #4f7cff;
-  color: #ffffff;
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-
-.app__header button:hover {
-  background-color: #3a63e0;
-}
-
 .app__game {
   position: relative;
   flex: 1;

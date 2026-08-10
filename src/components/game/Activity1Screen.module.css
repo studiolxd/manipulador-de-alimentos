@@ -1,0 +1,88 @@
+.root {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transition: opacity 600ms ease;
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.78);
+  pointer-events: none;
+}
+
+.selecting {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 50px 24px;
+  text-align: center;
+  transition: opacity 600ms ease;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: #9e4d4c;
+  max-width: 80%;
+}
+
+.subtitle {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #1a1a1a;
+  max-width: 80%;
+}
+
+.chipsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 14px;
+  max-width: 85%;
+}
+
+.chip {
+  height: 46px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  background-color: #f2c584;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.chip.selected {
+  background-color: #9e4d4c;
+  color: #ffffff;
+}
+
+.resultZone {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 18px 16px;
+  overflow: hidden;
+}
+
+.resultChip {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  white-space: nowrap;
+}

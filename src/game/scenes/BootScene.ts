@@ -16,15 +16,19 @@ export class BootScene extends Phaser.Scene {
     this.load.setBaseURL(import.meta.env.BASE_URL)
     this.load.image('restaurante', 'Restaurante.jpg')
     this.load.image('sala', 'Sala.jpg')
+    this.load.image('barra', 'Barra.png')
     this.load.svg('david', 'David.svg')
-    this.load.image('bocadilloIzq', 'Bocadillo izq.png')
-    this.load.image('bocadilloDer', 'Bocadillo der.png')
+    this.load.image('portada', 'Portada.png')
   }
 
   create(): void {
     // Espera a que la tipografía Poppins esté disponible para que el texto dibujado
     // en el canvas de Phaser no arranque con la fuente de sistema y luego "salte".
-    Promise.all([document.fonts.load('400 16px "Poppins"'), document.fonts.load('600 16px "Poppins"')])
+    Promise.all([
+      document.fonts.load('400 16px "Poppins"'),
+      document.fonts.load('600 16px "Poppins"'),
+      document.fonts.load('700 16px "Poppins"'),
+    ])
       .catch(() => undefined)
       .finally(() => this.scene.start(SceneKeys.Main))
   }

@@ -1,0 +1,85 @@
+.button {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease, opacity 600ms ease;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+/* Tamaños */
+.default {
+  min-width: 210px;
+  height: 56px;
+  padding: 0 32px;
+  font-size: 22px;
+}
+
+.compact {
+  min-width: 150px;
+  height: 42px;
+  padding: 0 20px;
+  font-size: 16px;
+}
+
+/* Variantes de color. 'home' y 'confirm' (habilitado) comparten la misma
+   pareja de colores, invertida respecto a 'normal'. */
+.normal {
+  background-color: #f2c584;
+  color: #000000;
+}
+.normal:hover:not(:disabled) {
+  background-color: #9e4d4c;
+  color: #ffffff;
+}
+
+.home {
+  background-color: #9e4d4c;
+  color: #ffffff;
+}
+.home:hover:not(:disabled) {
+  background-color: #f2c584;
+  color: #000000;
+}
+
+.confirm {
+  background-color: #9e4d4c;
+  color: #ffffff;
+}
+.confirm:hover:not(:disabled) {
+  background-color: #f2c584;
+  color: #000000;
+}
+.confirm:disabled {
+  background-color: #d9d9d9;
+  color: #5a5a5a;
+}
+
+/* Anclajes. Los tres de esquina son puro CSS; 'home-start' fija el borde
+   izquierdo por ratio y recibe su 'top' por estilo inline (ver NavButton). */
+.bottom-center {
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+}
+
+.bottom-right {
+  right: 60px;
+  bottom: 40px;
+}
+
+.bottom-left {
+  left: 60px;
+  bottom: 40px;
+}
+
+.home-start {
+  left: 9%;
+}

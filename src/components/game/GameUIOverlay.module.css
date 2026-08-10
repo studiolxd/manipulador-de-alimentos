@@ -1,0 +1,8 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* Los hijos interactivos (botones, botón de adelantar) reactivan
+     pointer-events por su cuenta; el resto del overlay deja pasar los
+     clics hacia el canvas de Phaser (chips, tarjetas arrastrables). */
+  pointer-events: none;
+}

@@ -1,4 +1,44 @@
 .container {
+  position: relative;
   width: 100%;
   height: 100%;
+}
+
+.canvasHost {
+  position: absolute;
+  inset: 0;
+}
+
+/* Fondo blanco para que el crossfade con la portada (también blanca) no dé
+   un salto de color. Duración alineada con FADE_DURATION (uiConstants.ts). */
+.spinnerOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  opacity: 1;
+  transition: opacity 600ms ease;
+  z-index: 10;
+}
+
+.spinnerOverlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 5px solid rgba(158, 77, 76, 0.2);
+  border-top-color: #9e4d4c;
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

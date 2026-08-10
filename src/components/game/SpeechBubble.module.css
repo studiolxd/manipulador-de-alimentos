@@ -1,0 +1,86 @@
+/*
+ * Bocadillo dibujado con CSS (sin imagen): rectángulo con borde + relleno,
+ * completamente adaptativo al texto, más un "pico" triangular colgando del
+ * borde inferior. El pico se hace con dos triángulos superpuestos vía
+ * clip-path (uno del color del borde, otro del relleno, encogido hacia
+ * dentro el grosor del borde) y un parche que borra el tramo de borde
+ * inferior de la caja bajo el que cuelga, para que la línea del contorno
+ * fluya sin corte hacia el pico.
+ */
+
+.bubbleBox {
+  position: absolute;
+  box-sizing: content-box;
+  background-color: #ffffff;
+  border: 2px solid #2b2b2b;
+  padding: 26px;
+  transition: opacity 600ms ease;
+}
+
+.bubbleText {
+  white-space: pre-wrap;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px;
+  line-height: 1.4;
+  color: #2b2b2b;
+}
+
+.measure {
+  position: fixed;
+  visibility: hidden;
+  left: -9999px;
+  top: 0;
+  white-space: pre-wrap;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.tailOuter,
+.tailInner {
+  position: absolute;
+  top: 100%;
+  /* Empuja el pico justo debajo del borde (top:100% cae en el borde de
+     padding, dentro del propio borde de la caja). */
+  margin-top: 2px;
+  width: 90px;
+  height: 70px;
+}
+
+.tailOuter {
+  background-color: #2b2b2b;
+  clip-path: polygon(0 0, 0 100%, 100% 0);
+}
+
+/* Mismo triángulo encogido hacia dentro el grosor del borde (2px),
+   calculado geométricamente a partir de los lados vertical/diagonal. */
+.tailInner {
+  background-color: #ffffff;
+  clip-path: polygon(2.2% 0, 2.2% 94.2%, 96.4% 0);
+}
+
+.tailPatch {
+  position: absolute;
+  top: 100%;
+  width: 90px;
+  height: 3px;
+  background-color: #ffffff;
+}
+
+.tailLeft .tailOuter,
+.tailLeft .tailInner,
+.tailLeft .tailPatch {
+  left: 20px;
+}
+
+.tailRight .tailOuter,
+.tailRight .tailInner {
+  right: 20px;
+  transform: scaleX(-1);
+}
+
+.tailRight .tailPatch {
+  right: 20px;
+}

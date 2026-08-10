@@ -1,0 +1,181 @@
+.root {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transition: opacity 600ms ease;
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.78);
+  pointer-events: none;
+}
+
+.dragging {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  transition: opacity 600ms ease;
+}
+
+.instruction {
+  margin: 0 24px;
+  max-width: 80%;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #1a1a1a;
+  pointer-events: none;
+}
+
+.categoriesRow {
+  display: flex;
+  gap: 24px;
+  width: 85%;
+  margin-top: 36px;
+  pointer-events: none;
+}
+
+/* Columna: cabecera de categoría + las tarjetas ya colocadas en ella, igual
+   que en el resultado final (`.resultColumn`), para que se vea en todo
+   momento en qué categoría va cayendo cada tarjeta. */
+.categoryColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.category {
+  flex: none;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 12px;
+  border-radius: 4px;
+  background-color: #9e4d4c;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@keyframes activity2Pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.category.pulsing {
+  animation: activity2Pulse 180ms ease-in-out;
+}
+
+.placedCards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.placedCard {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* Mazo de tarjetas pendientes, centrado y anclado abajo: todas ocupan la
+   misma celda de grid (mismo sitio exacto, una encima de otra tapando del
+   todo a las de debajo), así que solo se ve la de arriba. Al arrastrarla
+   fuera y quitarse del array, la siguiente ocupa ese mismo sitio. */
+.cardStack {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  display: grid;
+}
+
+.card {
+  grid-area: 1 / 1;
+  touch-action: none;
+  user-select: none;
+  width: 240px;
+  height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  background-color: #f2c584;
+  color: #000000;
+  cursor: grab;
+  box-sizing: border-box;
+}
+
+.card.dragging {
+  position: relative;
+  z-index: 10;
+  cursor: grabbing;
+}
+
+.result {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 50px 24px 0;
+  transition: opacity 600ms ease;
+}
+
+.resultColumn {
+  flex: 1;
+  max-width: calc((85% - 48px) / 3);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+/* `.category` normalmente vive en `.categoriesRow` (flex en fila, flex:1
+   reparte el ancho); aquí el eje es vertical, así que hay que anular ese
+   flex:1 o la cabecera se estira a toda la altura de la columna. */
+.resultColumn > .category {
+  flex: none;
+}
+
+.resultCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.resultCard {
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
