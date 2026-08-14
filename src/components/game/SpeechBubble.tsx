@@ -9,6 +9,7 @@ import {
   BUBBLE_BOTTOM_MARGIN,
   BUBBLE_CENTER_Y_RATIO,
   HANDLER_BUBBLE_DAVID_GAP,
+  RESULT_CHIPS_RIGHT_MARGIN,
   TYPEWRITER_DELAY,
 } from '../../game/config/uiConstants'
 import { splitSentences } from '../../game/utils'
@@ -34,7 +35,11 @@ const getBubbleAnchorX = (bubble: BubbleDescriptor, metrics: SceneMetricsPayload
     return getDavidGapZone(metrics).centerX
   }
   if (bubble.horizontalAnchor === 'davidNear') {
-    return getDavidRightEdge(metrics) + HANDLER_BUBBLE_DAVID_GAP + outerWidth / 2
+    const idealCenterX = getDavidRightEdge(metrics) + HANDLER_BUBBLE_DAVID_GAP + outerWidth / 2
+    // Sin este tope, en pantallas estrechas el borde derecho del bocadillo
+    // puede acabar fuera del viewport y provocar scroll horizontal.
+    const maxCenterX = metrics.width - RESULT_CHIPS_RIGHT_MARGIN - outerWidth / 2
+    return Math.min(idealCenterX, maxCenterX)
   }
   return metrics.width / 2
 }

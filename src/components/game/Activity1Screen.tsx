@@ -118,8 +118,9 @@ export const Activity1Screen = () => {
       selected: selected.has(concept.label),
     }))
     const hasWrongSelection = confirmedResults.some((result) => result.selected && !result.correct)
+    const hasMissedCorrect = confirmedResults.some((result) => result.correct && !result.selected)
 
-    EventBus.emit(GameEvents.ConceptsConfirmed, { hasWrongSelection })
+    EventBus.emit(GameEvents.ConceptsConfirmed, { hasWrongSelection, hasMissedCorrect })
     setResults(confirmedResults)
     setFadingOut(true)
     phaseTimeoutRef.current = window.setTimeout(() => setPhase('result'), FADE_DURATION)
@@ -167,7 +168,7 @@ export const Activity1Screen = () => {
         </div>
       )}
 
-      {phase === 'result' && results && zoneBottomCss !== null && (
+      {visible && phase === 'result' && results && zoneBottomCss !== null && (
         <div
           className={styles.resultZone}
           style={{

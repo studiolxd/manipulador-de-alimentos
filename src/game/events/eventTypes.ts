@@ -9,8 +9,9 @@ export const GameEvents = {
   EnterRestaurant: 'enter-restaurant',
   StartTraining: 'start-training',
   ContinueFromFeedback: 'continue-from-feedback',
-  ContinueFromHandlerIntro: 'continue-from-handler-intro',
   FollowDavid: 'follow-david',
+  FollowDavidToKitchen: 'follow-david-to-kitchen',
+  StartKitchenTask: 'start-kitchen-task',
   // Phaser -> React: qué botones/bocadillos mostrar y con qué métricas de
   // escena posicionarlos. Phaser sigue siendo el dueño de la orquestación;
   // React solo renderiza el último snapshot recibido de cada uno.
@@ -22,6 +23,9 @@ export const GameEvents = {
   // selección, drag & drop, resultado) lo gestiona el propio componente.
   SetActivity1: 'set-activity1',
   SetActivity2: 'set-activity2',
+  // Activa los tres platos de la Encimera como botones + indicación de
+  // seleccionar uno.
+  SetCounterSelect: 'set-counter-select',
   // React -> Phaser: interacción del jugador con los elementos que ahora
   // vive en el DOM, y datos medidos en el DOM que Phaser necesita (p.ej.
   // para colocar los chips de resultado por encima de un bocadillo).
@@ -29,6 +33,7 @@ export const GameEvents = {
   BubbleRevealComplete: 'bubble-reveal-complete',
   BubbleBoundsReport: 'bubble-bounds-report',
   ConceptsConfirmed: 'concepts-confirmed',
+  Activity2Confirmed: 'activity2-confirmed',
 } as const
 
 export interface CurrentSceneReadyPayload {
@@ -119,6 +124,11 @@ export interface SetActivityPayload {
 
 export interface ConceptsConfirmedPayload {
   hasWrongSelection: boolean
+  hasMissedCorrect: boolean
+}
+
+export interface Activity2ConfirmedPayload {
+  allCorrect: boolean
 }
 
 /** Mapa evento -> payload, usado por EventBus para tipar emit/on/off sin `any`. */
@@ -127,15 +137,18 @@ export interface GameEventPayloads {
   [GameEvents.EnterRestaurant]: undefined
   [GameEvents.StartTraining]: undefined
   [GameEvents.ContinueFromFeedback]: undefined
-  [GameEvents.ContinueFromHandlerIntro]: undefined
   [GameEvents.FollowDavid]: undefined
+  [GameEvents.FollowDavidToKitchen]: undefined
+  [GameEvents.StartKitchenTask]: undefined
   [GameEvents.SetButtons]: ButtonDescriptor[]
   [GameEvents.SetBubbles]: BubbleDescriptor[]
   [GameEvents.SceneMetrics]: SceneMetricsPayload
   [GameEvents.SetActivity1]: SetActivityPayload
   [GameEvents.SetActivity2]: SetActivityPayload
+  [GameEvents.SetCounterSelect]: SetActivityPayload
   [GameEvents.ButtonClicked]: ButtonClickedPayload
   [GameEvents.BubbleRevealComplete]: BubbleRevealCompletePayload
   [GameEvents.BubbleBoundsReport]: BubbleBoundsReportPayload
   [GameEvents.ConceptsConfirmed]: ConceptsConfirmedPayload
+  [GameEvents.Activity2Confirmed]: Activity2ConfirmedPayload
 }

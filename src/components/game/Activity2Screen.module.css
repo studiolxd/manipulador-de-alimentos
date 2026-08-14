@@ -39,9 +39,8 @@
   pointer-events: none;
 }
 
-/* Columna: cabecera de categoría + las tarjetas ya colocadas en ella, igual
-   que en el resultado final (`.resultColumn`), para que se vea en todo
-   momento en qué categoría va cayendo cada tarjeta. */
+/* Columna: cabecera de categoría + las tarjetas ya colocadas en ella, para
+   que se vea en todo momento en qué categoría va cayendo cada tarjeta. */
 .categoryColumn {
   flex: 1;
   display: flex;
@@ -87,9 +86,10 @@
 }
 
 .placedCard {
-  height: 40px;
+  height: 42px;
   padding: 0 16px;
-  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,6 +97,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
 }
 
 /* Mazo de tarjetas pendientes, centrado y anclado abajo: todas ocupan la
@@ -111,71 +112,35 @@
   display: grid;
 }
 
+/* Tarjeta con aspecto de carta física: fondo tipo papel, borde fino y
+   sombra de elevación en vez del botón plano que era antes. */
 .card {
   grid-area: 1 / 1;
   touch-action: none;
   user-select: none;
-  width: 240px;
-  height: 48px;
-  padding: 0 22px;
-  border: none;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 130px;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
-  background-color: #f2c584;
-  color: #000000;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  background-color: #fffaf3;
+  color: #1a1a1a;
   cursor: grab;
   box-sizing: border-box;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .card.dragging {
   position: relative;
   z-index: 10;
   cursor: grabbing;
-}
-
-.result {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  padding: 50px 24px 0;
-  transition: opacity 600ms ease;
-}
-
-.resultColumn {
-  flex: 1;
-  max-width: calc((85% - 48px) / 3);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 16px;
-}
-
-/* `.category` normalmente vive en `.categoriesRow` (flex en fila, flex:1
-   reparte el ancho); aquí el eje es vertical, así que hay que anular ese
-   flex:1 o la cabecera se estira a toda la altura de la columna. */
-.resultColumn > .category {
-  flex: none;
-}
-
-.resultCards {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 40px;
-}
-
-.resultCard {
-  height: 48px;
-  padding: 0 22px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  box-sizing: border-box;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28), 0 6px 10px rgba(0, 0, 0, 0.14);
 }

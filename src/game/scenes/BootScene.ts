@@ -17,6 +17,8 @@ export class BootScene extends Phaser.Scene {
     this.load.image('restaurante', 'Restaurante.jpg')
     this.load.image('sala', 'Sala.jpg')
     this.load.image('barra', 'Barra.png')
+    this.load.image('cocina', 'cocina.png')
+    this.load.image('encimera', 'encimera.png')
     this.load.svg('david', 'David.svg')
     this.load.image('portada', 'Portada.png')
   }

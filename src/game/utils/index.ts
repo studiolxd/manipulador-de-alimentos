@@ -2,3 +2,4 @@
 export * from './assetPath'
 export * from './clamp'
 export * from './sentences'
+export * from './shuffle'
